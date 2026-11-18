@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#102a24">
+  <meta name="description" content="Browse Nigerian homes and rentals across 24 dataset-covered states and Abuja, and explore asking-price estimates where enough data is available.">
+  <title>Shelter | Nigerian House Price Guide</title>
+  <link rel="stylesheet" href="/styles.css?v=dataset-locations-1">
+  <script src="/app.js?v=dataset-locations-1" defer></script>
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="#top" aria-label="Shelter home">
+      <span class="brand-mark" aria-hidden="true">S</span>
+      <span>Shelter<span class="brand-dot">.</span></span>
+    </a>
+    <nav aria-label="Main navigation">
+      <a href="#available-homes">Homes &amp; rentals</a>
+      <a href="#estimator">Price estimate</a>
+      <a href="#how-it-works">How it works</a>
+      <a class="nav-pill" href="#data">Data &amp; coverage</a>
+    </nav>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="hero-copy">
+        <p class="eyebrow"><span class="eyebrow-dot"></span> NIGERIAN HOME PRICE GUIDE</p>
+        <h1>A clearer view of<br><em>what a home may ask.</em></h1>
+        <p class="hero-text">Explore an asking-price estimate built from real property listings in Lagos and Abuja. See what shapes the number, and how the estimate is made.</p>
+        <div class="hero-actions"><a class="button button-light" href="#available-homes">Tour available homes <span aria-hidden="true">↓</span></a><a class="hero-secondary-link" href="#estimator">Estimate a home</a></div>
+        <div class="hero-note"><span class="check-icon">✓</span> Estimates in Nigerian naira <span class="note-divider">·</span> Data-led, plainly explained</div>
+      </div>
+      <div class="hero-art" aria-label="Illustration of a home in a leafy neighborhood">
+        <div class="sun"></div><div class="cloud cloud-one"></div><div class="cloud cloud-two"></div>
+        <div class="hill hill-back"></div><div class="hill hill-front"></div>
+        <div class="house">
+          <div class="roof"></div><div class="house-body"><div class="window window-left"></div><div class="door"></div><div class="window window-right"></div></div>
+          <div class="house-step"></div>
+        </div>
+        <div class="tree tree-left"><i></i><b></b></div><div class="tree tree-right"><i></i><b></b></div>
+        <div class="art-caption"><span class="caption-dot"></span> Local context matters</div>
+      </div>
+    </section>
+
+    <section class="trust-strip" aria-label="Coverage summary">
+      <div><span class="trust-label">MODEL COVERAGE</span><strong id="estimate-state-count">Loading states…</strong></div>
+      <div><span class="trust-label">CURRENCY</span><strong>Nigerian naira <span class="naira">₦</span></strong></div>
+      <div><span class="trust-label">ESTIMATE TYPE</span><strong>Advertised asking price</strong></div>
+      <div><span class="trust-label">BUILT FOR</span><strong>Clarity, not certainty</strong></div>
+    </section>
+
+    <section class="homes-section" id="available-homes">
+      <div class="section-heading homes-heading">
+        <p class="eyebrow">PROPERTIES LISTED BY SHELTER</p>
+        <h2>Find a place to rent<br><em>or call your own.</em></h2>
+        <p>Explore homes, rooms, studios and shops for rent or sale. Choose a listing to see its details and request a viewing.</p>
+      </div>
+      <div class="listing-filter"><label for="listing-filter">Show</label><select id="listing-filter"><option value="all">For rent or sale</option><option value="sale">For sale</option><option value="rent">For rent</option></select><label for="state-filter">State</label><select id="state-filter"><option value="all">All states and FCT</option></select></div>
+      <div class="homes-grid" id="homes-grid" aria-live="polite"><p class="homes-loading">Loading available homes…</p></div>
+    </section>
+
+    <dialog class="home-dialog" id="home-dialog" aria-labelledby="home-dialog-title">
+      <button class="home-dialog-close" type="button" id="home-dialog-close" aria-label="Close home details">×</button>
+      <div class="home-dialog-layout">
+        <div class="home-dialog-photo" id="home-dialog-photo"><span>⌂</span></div>
+        <div class="home-dialog-content">
+          <p class="eyebrow" id="home-dialog-location"></p>
+          <h2 id="home-dialog-title"></h2>
+          <p class="home-dialog-price" id="home-dialog-price"></p>
+          <p class="home-dialog-meta" id="home-dialog-meta"></p>
+          <p class="home-dialog-description" id="home-dialog-description"></p>
+          <form class="tour-form" id="tour-form">
+            <input type="hidden" name="home_id">
+            <div><p class="tour-form-kicker">ARRANGE A VIEWING</p><h3>Request a viewing</h3><p>Choose a preferred time. Shelter will contact you to confirm.</p></div>
+            <div class="tour-form-grid">
+              <label>Your name<input name="name" autocomplete="name" maxlength="80" required></label>
+              <label>Email address<input name="email" type="email" autocomplete="email" maxlength="254" required></label>
+              <label>Phone number<input name="phone" type="tel" autocomplete="tel" maxlength="30" required></label>
+              <label>Preferred date and time<input name="preferred_at" type="datetime-local" required></label>
+              <label>Tour type<select name="tour_type" required><option value="in_person">In-person</option><option value="virtual">Virtual</option></select></label>
+              <label class="tour-note-field">Note for Shelter (optional)<textarea name="note" rows="2" maxlength="600" placeholder="Anything you would like us to know?"></textarea></label>
+            </div>
+            <p class="tour-form-status" id="tour-form-status" role="status" aria-live="polite"></p>
+            <button class="button button-primary" type="submit">Request a viewing <span aria-hidden="true">→</span></button>
+            <p class="tour-privacy">Your contact details and preferred time are saved so Shelter’s administrator can respond to your request.</p>
+          </form>
+        </div>
+      </div>
+    </dialog>
+
+    <section class="estimator-section" id="estimator">
+      <div class="section-heading">
+        <p class="eyebrow">THE ESTIMATOR</p>
+        <h2>Start with the home.<br><em>Get a grounded estimate.</em></h2>
+        <p>Share a few details. We’ll compare them with similar listings in the selected area.</p>
+      </div>
+      <div class="estimator-layout">
+        <form class="property-form" id="property-form">
+          <div class="form-heading"><div><span class="step-label">PROPERTY DETAILS</span><h3>Tell us about the home</h3></div><span class="form-icon" aria-hidden="true">⌂</span></div>
+          <div class="form-grid">
+            <label class="field field-wide">State <span class="required">*</span>
+              <select id="state" name="state" required><option value="">Loading locations…</option></select>
+            </label>
+            <label class="field field-wide">Town or area <span class="required">*</span>
+              <select id="town" name="town" required disabled><option value="">Choose a state first</option></select>
+              <small>Choose the closest available area.</small>
+            </label>
+            <label class="field field-wide">Property type <span class="required">*</span>
+              <select id="title" name="title" required disabled><option value="">Loading property types…</option></select>
+            </label>
+            <div class="field field-wide count-label">Rooms and parking <span class="field-hint">Enter 0 if none</span></div>
+            <label class="field count-field">Bedrooms <span class="required">*</span><input name="bedrooms" type="number" min="0" max="20" value="3" required></label>
+            <label class="field count-field">Bathrooms <span class="required">*</span><input name="bathrooms" type="number" min="0" max="20" value="3" required></label>
+            <label class="field count-field">Toilets <span class="required">*</span><input name="toilets" type="number" min="0" max="20" value="3" required></label>
+            <label class="field count-field">Parking spaces <span class="required">*</span><input name="parking_space" type="number" min="0" max="20" value="2" required></label>
+          </div>
+          <p class="form-error" id="form-error" role="alert" hidden></p>
+          <button class="button button-primary submit-button" id="submit-button" type="submit">Estimate asking price <span aria-hidden="true">→</span></button>
+          <p class="form-footnote"><span aria-hidden="true">⌑</span> Your property details are used to make this estimate and are not saved.</p>
+        </form>
+
+        <aside class="result-card" id="result-card" aria-live="polite">
+          <div class="result-top"><span class="result-icon" aria-hidden="true">↗</span><span class="result-status" id="result-status">READY WHEN YOU ARE</span></div>
+          <div id="empty-result" class="empty-result"><div class="result-illustration"><span>₦</span><i></i></div><h3>Your estimate<br>will appear here.</h3><p>Complete the property details to see an estimate based on similar listings.</p><div class="result-rule"></div><div class="result-small"><span class="mini-dot"></span> We’ll explain the comparison</div></div>
+          <div id="price-result" class="price-result" hidden><p class="price-label">ESTIMATED ASKING PRICE</p><div class="price-value" id="price-value">₦0</div><p class="match-copy" id="match-copy"></p><div class="match-breakdown"><strong>Why these listings?</strong><p id="match-breakdown"></p></div><div class="comparable-range"><span>OBSERVED RANGE IN SIMILAR LISTINGS</span><strong id="range-value">₦0 – ₦0</strong><small>Middle 60% of the selected comparable listings; this is not a guaranteed price range.</small></div><div class="result-rule"></div><p class="result-caveat">This is an estimate based on advertised listings. It is not a formal valuation or guaranteed sale price.</p><button class="text-button" type="button" id="edit-details">← Edit property details</button></div>
+          <div class="card-pattern" aria-hidden="true"></div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="how-section" id="how-it-works">
+      <div class="section-heading section-heading-center">
+        <p class="eyebrow">NO MYSTERY, JUST STEPS</p>
+        <h2>How does a computer<br><em>estimate a home’s price?</em></h2>
+        <p>Think of it as learning from examples. Here’s the process in everyday language.</p>
+      </div>
+      <div class="steps-grid">
+        <article class="step-card"><span class="step-number">01</span><div class="step-symbol symbol-data">▤</div><h3>Gather examples</h3><p>We start with past home listings. Each one includes a location, home type, room counts, and the price the seller advertised.</p><div class="step-example"><b>One example</b><span>3 bedrooms · Ikeja · ₦95m</span></div></article>
+        <article class="step-card"><span class="step-number">02</span><div class="step-symbol symbol-clean">✳</div><h3>Check and tidy</h3><p>We remove repeated or incomplete entries, fix inconsistent labels, and keep the locations we have enough examples for.</p><div class="step-example"><b>Why this matters</b><span>Bad examples teach bad habits.</span></div></article>
+        <article class="step-card"><span class="step-number">03</span><div class="step-symbol symbol-learn">⌕</div><h3>Find similar homes</h3><p>For a new home, the tool looks for listings with a similar location, property type, and number of rooms.</p><div class="step-example"><b>Like comparing</b><span>Apples with nearby apples.</span></div></article>
+        <article class="step-card"><span class="step-number">04</span><div class="step-symbol symbol-price">₦</div><h3>Summarize the prices</h3><p>It combines the asking prices of those similar listings. The result is a helpful comparison, not a promise.</p><div class="step-example"><b>Then we explain</b><span>What matched and what didn’t.</span></div></article>
+      </div>
+      <div class="learning-note"><div class="bulb" aria-hidden="true">✦</div><p><strong>How do we know if it’s any good?</strong><br>We hold some listings back from the learning step, then ask the model to estimate their prices. We compare its guesses with the prices it has never seen. That tells us how far off it tends to be.</p></div>
+    </section>
+
+    <section class="data-section" id="data">
+      <div class="data-copy"><p class="eyebrow">KNOW WHAT’S BEHIND THE NUMBER</p><h2>Good estimates start<br><em>with honest data.</em></h2><p>This version uses asking-price listings from the Nigerian House Price Dataset. It can estimate prices in covered states with enough examples. In locations where examples are sparse, Shelter asks for more data instead of guessing. Rental and sale listings are limited to the 24 states and Abuja represented in the dataset.</p></div>
+      <div class="data-stats"><div class="stat-row"><span>Usable examples loaded</span><strong id="listing-count">—</strong></div><div class="stat-row"><span>States with enough examples</span><strong id="estimate-state-list">Loading…</strong></div><div class="stat-row"><span>What the price means</span><strong>Advertised asking price</strong></div><div class="stat-row"><span>Property size / condition data</span><strong>Not included</strong></div><div class="stat-row"><span>Minimum examples per state</span><strong>50 listings</strong></div><div class="data-license">This estimator supports states with at least 50 usable listings. Estimates remain uncertain and do not represent verified sale prices.<br><br>Dataset attribution: Anietie Michael Jackson · Kaggle · MIT license</div></div>
+    </section>
+
+    <section class="future-banner"><div class="future-icon" aria-hidden="true">⌖</div><div><p class="eyebrow">A LONGER-TERM GOAL</p><h2>More of Nigeria, as the data grows.</h2><p>We’ll add other states when there are enough suitable listings to make and check useful estimates there.</p></div><span class="future-tag">Nationwide, step by step</span></section>
+  </main>
+
+  <footer class="site-footer"><a class="brand footer-brand" href="#top"><span class="brand-mark" aria-hidden="true">S</span><span>Shelter<span class="brand-dot">.</span></span></a><p>Clearer context for Nigerian home prices.</p><span class="footer-note">Educational estimate · Not a formal valuation</span></footer>
+</body>
+</html>
+
+
+
+

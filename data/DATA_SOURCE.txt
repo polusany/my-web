@@ -1,0 +1,8 @@
+Dataset: Nigerian House Price Dataset
+Author: Anietie Michael Jackson
+Source: https://www.kaggle.com/datasets/michaelanietie/nigerian-house-price-dataset
+License listed on Kaggle: MIT
+File: nigeria_houses_data.csv
+Downloaded for this project on 28 October 2026.
+
+The dataset contains listing asking prices and property details. It does not contain verified completed sale prices. The file contains examples for 24 Nigerian states plus Abuja. Shelter only allows property inventory in those dataset locations and only enables price estimates when a location has at least 50 usable examples. No estimates or listings are invented for uncovered states.

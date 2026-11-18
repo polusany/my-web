@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#102a24">
+  <title>Shelter Property Admin</title>
+  <link rel="stylesheet" href="/admin.css?v=dataset-locations-1">
+  <script src="/admin.js?v=dataset-locations-1" defer></script>
+</head>
+<body>
+  <header class="admin-header">
+    <a class="admin-brand" href="/"><span class="admin-mark">S</span> Shelter <span>PROPERTY DESK</span></a>
+    <div class="header-actions"><span id="session-label">Administrator access</span><button class="quiet-button" id="logout-button" type="button" hidden>Sign out</button></div>
+  </header>
+  <main class="admin-main">
+    <section class="page-intro"><p class="eyebrow">LISTINGS &amp; VIEWINGS</p><h1>Property desk</h1><p>Add homes for visitors to browse, then keep track of requested tours.</p></section>
+    <div class="notice" id="admin-notice" role="status" aria-live="polite" hidden></div>
+    <section class="login-card" id="login-card">
+      <p class="eyebrow">ADMINISTRATOR SIGN IN</p><h2>Welcome back.</h2><p>Use the private admin password configured for this Shelter server.</p>
+      <div class="setup-help" id="setup-help" hidden>Admin access is not configured yet. In PowerShell, set <code>$env:SHELTER_ADMIN_PASSWORD</code> to a private password of at least 12 characters, then restart Shelter.</div>
+      <form id="login-form"><label>Admin password<input name="password" type="password" autocomplete="current-password" minlength="12" required></label><button class="primary-button" type="submit">Sign in</button></form>
+    </section>
+    <section id="admin-workspace" hidden>
+      <div class="overview-grid"><article><span>PROPERTY LISTINGS</span><strong id="listing-count">0</strong></article><article><span>TOUR REQUESTS</span><strong id="tour-count">0</strong></article><button class="quiet-button" id="refresh-button" type="button">Refresh data ↻</button></div>
+      <div class="workspace-grid">
+        <section class="panel listing-editor-panel">
+          <div class="panel-heading"><div><p class="eyebrow">PROPERTY INVENTORY</p><h2 id="editor-heading">Add a listing</h2></div><span class="panel-icon">⌂</span></div>
+          <form id="home-form">
+            <input name="home_id" type="hidden">
+            <label>Listing title<input name="title" maxlength="100" placeholder="Self-contained room near Ikeja GRA" required></label>
+            <div class="two-fields"><label>Listing purpose<select name="transaction_type" required><option value="sale">For sale</option><option value="rent">For rent</option></select></label><label id="rent-frequency-field" hidden>Rent charged<select name="rent_frequency"><option value="monthly">Per month</option><option value="yearly">Per year</option></select></label></div>
+            <div class="two-fields"><label>State<select name="state" required></select></label><label>Town or area<input name="town" maxlength="80" placeholder="Ikeja" required></label></div>
+            <div class="two-fields"><label>Property type<input name="property_type" list="property-type-suggestions" maxlength="80" placeholder="Studio" required><datalist id="property-type-suggestions"><option value="Self-contained room"><option value="Single room"><option value="Room and parlour"><option value="One-bedroom flat"><option value="Two-bedroom flat"><option value="Studio apartment"><option value="Shop"><option value="Office"><option value="Detached duplex"><option value="Terrace house"></datalist></label><label><span id="price-label">Asking price (₦)</span><input name="price" type="number" min="1" step="1" required></label></div>
+            <div class="four-fields"><label>Bedrooms<input name="bedrooms" type="number" min="0" max="30" value="3" required></label><label>Bathrooms<input name="bathrooms" type="number" min="0" max="30" value="2" required></label><label>Toilets<input name="toilets" type="number" min="0" max="30" value="2" required></label><label>Parking<input name="parking_space" type="number" min="0" max="30" value="1" required></label></div>
+            <p class="form-hint">For rooms, shops, or studios, enter 0 for features that do not apply.</p>
+            <label>Photo URL (optional; https:// only)<input name="image_url" type="url" maxlength="500" placeholder="https://example.com/home-photo.jpg"></label>
+            <label>Property description<textarea name="description" rows="4" maxlength="1600" placeholder="Describe the home and useful details for visitors." required></textarea></label>
+            <label>Availability<select name="status"><option value="available">Available for tours</option><option value="unavailable">Not currently available</option></select></label>
+            <p class="form-message" id="home-form-message" role="status"></p>
+            <div class="form-actions"><button class="primary-button" type="submit" id="save-home-button">Publish listing</button><button class="quiet-button" type="button" id="cancel-edit-button" hidden>Cancel edit</button></div>
+          </form>
+        </section>
+        <section class="panel">
+          <div class="panel-heading"><div><p class="eyebrow">SHELTER INVENTORY</p><h2>Manage listings</h2></div></div>
+          <div class="admin-list" id="admin-homes"><p class="empty-message">Loading listings…</p></div>
+        </section>
+      </div>
+      <section class="panel tours-panel"><div class="panel-heading"><div><p class="eyebrow">VIEWING SCHEDULE</p><h2>Tour requests</h2><p>Contact the visitor to confirm the requested time.</p></div></div><div class="admin-list tour-list" id="admin-tours"><p class="empty-message">Loading tour requests…</p></div></section>
+    </section>
+  </main>
+  <footer class="admin-footer"><a href="/">← Return to Shelter</a><span>Historical price data and current Shelter listings are kept separate.</span></footer>
+</body>
+</html>

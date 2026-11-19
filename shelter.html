@@ -5,15 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#102a24">
   <meta name="description" content="Browse Nigerian homes and rentals across 24 dataset-covered states and Abuja, and explore asking-price estimates where enough data is available.">
-  <title>Shelter | Nigerian House Price Guide</title>
-  <link rel="stylesheet" href="/styles.css?v=dataset-locations-1">
-  <script src="/app.js?v=dataset-locations-1" defer></script>
+  <title>Moshelter | Find a home in Nigeria</title>
+  <link rel="stylesheet" href="/styles.css?v=moshelter-1">
+  <script src="/app.js?v=moshelter-1" defer></script>
 </head>
 <body>
   <header class="site-header">
-    <a class="brand" href="#top" aria-label="Shelter home">
-      <span class="brand-mark" aria-hidden="true">S</span>
-      <span>Shelter<span class="brand-dot">.</span></span>
+    <a class="brand" href="#top" aria-label="Moshelter home">
+      <span class="brand-mark" aria-hidden="true">M</span>
+      <span>Moshelter<span class="brand-dot">.</span></span>
     </a>
     <nav aria-label="Main navigation">
       <a href="#available-homes">Homes &amp; rentals</a>
@@ -26,9 +26,9 @@
   <main id="top">
     <section class="hero">
       <div class="hero-copy">
-        <p class="eyebrow"><span class="eyebrow-dot"></span> NIGERIAN HOME PRICE GUIDE</p>
-        <h1>A clearer view of<br><em>what a home may ask.</em></h1>
-        <p class="hero-text">Explore an asking-price estimate built from real property listings in Lagos and Abuja. See what shapes the number, and how the estimate is made.</p>
+        <p class="eyebrow"><span class="eyebrow-dot"></span> A BETTER WAY TO FIND HOME</p>
+        <h1>Find your place<br><em>in Nigeria.</em></h1>
+        <p class="hero-text">Discover homes and rentals, arrange a viewing, and explore price estimates grounded in local property listings across Nigeria.</p>
         <div class="hero-actions"><a class="button button-light" href="#available-homes">Tour available homes <span aria-hidden="true">↓</span></a><a class="hero-secondary-link" href="#estimator">Estimate a home</a></div>
         <div class="hero-note"><span class="check-icon">✓</span> Estimates in Nigerian naira <span class="note-divider">·</span> Data-led, plainly explained</div>
       </div>
@@ -53,9 +53,9 @@
 
     <section class="homes-section" id="available-homes">
       <div class="section-heading homes-heading">
-        <p class="eyebrow">PROPERTIES LISTED BY SHELTER</p>
-        <h2>Find a place to rent<br><em>or call your own.</em></h2>
-        <p>Explore homes, rooms, studios and shops for rent or sale. Choose a listing to see its details and request a viewing.</p>
+        <p class="eyebrow">A PLACE THAT FEELS LIKE YOURS</p>
+        <h2>Your next chapter<br><em>starts at home.</em></h2>
+        <p>Browse homes, rooms, studios and shops for rent or sale. Find the right fit, then request a viewing directly.</p>
       </div>
       <div class="listing-filter"><label for="listing-filter">Show</label><select id="listing-filter"><option value="all">For rent or sale</option><option value="sale">For sale</option><option value="rent">For rent</option></select><label for="state-filter">State</label><select id="state-filter"><option value="all">All states and FCT</option></select></div>
       <div class="homes-grid" id="homes-grid" aria-live="polite"><p class="homes-loading">Loading available homes…</p></div>
@@ -73,18 +73,18 @@
           <p class="home-dialog-description" id="home-dialog-description"></p>
           <form class="tour-form" id="tour-form">
             <input type="hidden" name="home_id">
-            <div><p class="tour-form-kicker">ARRANGE A VIEWING</p><h3>Request a viewing</h3><p>Choose a preferred time. Shelter will contact you to confirm.</p></div>
+            <div><p class="tour-form-kicker">ARRANGE A VIEWING</p><h3>Request a viewing</h3><p>Choose a preferred time. Moshelter will contact you to confirm.</p></div>
             <div class="tour-form-grid">
               <label>Your name<input name="name" autocomplete="name" maxlength="80" required></label>
               <label>Email address<input name="email" type="email" autocomplete="email" maxlength="254" required></label>
               <label>Phone number<input name="phone" type="tel" autocomplete="tel" maxlength="30" required></label>
               <label>Preferred date and time<input name="preferred_at" type="datetime-local" required></label>
               <label>Tour type<select name="tour_type" required><option value="in_person">In-person</option><option value="virtual">Virtual</option></select></label>
-              <label class="tour-note-field">Note for Shelter (optional)<textarea name="note" rows="2" maxlength="600" placeholder="Anything you would like us to know?"></textarea></label>
+              <label class="tour-note-field">Note for Moshelter (optional)<textarea name="note" rows="2" maxlength="600" placeholder="Anything you would like us to know?"></textarea></label>
             </div>
             <p class="tour-form-status" id="tour-form-status" role="status" aria-live="polite"></p>
             <button class="button button-primary" type="submit">Request a viewing <span aria-hidden="true">→</span></button>
-            <p class="tour-privacy">Your contact details and preferred time are saved so Shelter’s administrator can respond to your request.</p>
+            <p class="tour-privacy">Your contact details and preferred time are saved so Moshelter’s administrator can respond to your request.</p>
           </form>
         </div>
       </div>
@@ -146,14 +146,14 @@
     </section>
 
     <section class="data-section" id="data">
-      <div class="data-copy"><p class="eyebrow">KNOW WHAT’S BEHIND THE NUMBER</p><h2>Good estimates start<br><em>with honest data.</em></h2><p>This version uses asking-price listings from the Nigerian House Price Dataset. It can estimate prices in covered states with enough examples. In locations where examples are sparse, Shelter asks for more data instead of guessing. Rental and sale listings are limited to the 24 states and Abuja represented in the dataset.</p></div>
+      <div class="data-copy"><p class="eyebrow">KNOW WHAT’S BEHIND THE NUMBER</p><h2>Good estimates start<br><em>with honest data.</em></h2><p>This version uses asking-price listings from the Nigerian House Price Dataset. It can estimate prices in covered states with enough examples. In locations where examples are sparse, Moshelter asks for more data instead of guessing. Rental and sale listings are limited to the 24 states and Abuja represented in the dataset.</p></div>
       <div class="data-stats"><div class="stat-row"><span>Usable examples loaded</span><strong id="listing-count">—</strong></div><div class="stat-row"><span>States with enough examples</span><strong id="estimate-state-list">Loading…</strong></div><div class="stat-row"><span>What the price means</span><strong>Advertised asking price</strong></div><div class="stat-row"><span>Property size / condition data</span><strong>Not included</strong></div><div class="stat-row"><span>Minimum examples per state</span><strong>50 listings</strong></div><div class="data-license">This estimator supports states with at least 50 usable listings. Estimates remain uncertain and do not represent verified sale prices.<br><br>Dataset attribution: Anietie Michael Jackson · Kaggle · MIT license</div></div>
     </section>
 
     <section class="future-banner"><div class="future-icon" aria-hidden="true">⌖</div><div><p class="eyebrow">A LONGER-TERM GOAL</p><h2>More of Nigeria, as the data grows.</h2><p>We’ll add other states when there are enough suitable listings to make and check useful estimates there.</p></div><span class="future-tag">Nationwide, step by step</span></section>
   </main>
 
-  <footer class="site-footer"><a class="brand footer-brand" href="#top"><span class="brand-mark" aria-hidden="true">S</span><span>Shelter<span class="brand-dot">.</span></span></a><p>Clearer context for Nigerian home prices.</p><span class="footer-note">Educational estimate · Not a formal valuation</span></footer>
+  <footer class="site-footer"><a class="brand footer-brand" href="#top"><span class="brand-mark" aria-hidden="true">M</span><span>Moshelter<span class="brand-dot">.</span></span></a><p>Find a home. Make it yours.</p><span class="footer-note">Thoughtful property discovery, made for Nigeria <a class="admin-footer-link" href="/admin">Admin sign in →</a></span></footer>
 </body>
 </html>
 

@@ -4,27 +4,27 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#102a24">
-  <title>Shelter Property Admin</title>
-  <link rel="stylesheet" href="/admin.css?v=dataset-locations-1">
-  <script src="/admin.js?v=dataset-locations-1" defer></script>
+  <title>Moshelter · Property management</title>
+  <link rel="stylesheet" href="/admin.css?v=moshelter-1">
+  <script src="/admin.js?v=moshelter-1" defer></script>
 </head>
 <body>
   <header class="admin-header">
-    <a class="admin-brand" href="/"><span class="admin-mark">S</span> Shelter <span>PROPERTY DESK</span></a>
+    <a class="admin-brand" href="/"><span class="admin-mark">M</span> Moshelter <span>MOSHELTER ADMIN</span></a>
     <div class="header-actions"><span id="session-label">Administrator access</span><button class="quiet-button" id="logout-button" type="button" hidden>Sign out</button></div>
   </header>
   <main class="admin-main">
-    <section class="page-intro"><p class="eyebrow">LISTINGS &amp; VIEWINGS</p><h1>Property desk</h1><p>Add homes for visitors to browse, then keep track of requested tours.</p></section>
+    <section class="page-intro"><p class="eyebrow">MOSHELTER WORKSPACE</p><h1>Your property desk</h1><p>Publish great places, keep listings up to date, and stay on top of every viewing request.</p></section>
     <div class="notice" id="admin-notice" role="status" aria-live="polite" hidden></div>
     <section class="login-card" id="login-card">
-      <p class="eyebrow">ADMINISTRATOR SIGN IN</p><h2>Welcome back.</h2><p>Use the private admin password configured for this Shelter server.</p>
-      <div class="setup-help" id="setup-help" hidden>Admin access is not configured yet. In PowerShell, set <code>$env:SHELTER_ADMIN_PASSWORD</code> to a private password of at least 12 characters, then restart Shelter.</div>
+      <p class="eyebrow">ADMINISTRATOR SIGN IN</p><h2>Welcome back.</h2><p>Sign in with the private admin password configured for your Moshelter workspace.</p>
+      <div class="setup-help" id="setup-help" hidden>Admin access is not configured yet. In PowerShell, set <code>$env:MOSHELTER_ADMIN_PASSWORD</code> to a private password of at least 12 characters, then restart Moshelter.</div>
       <form id="login-form"><label>Admin password<input name="password" type="password" autocomplete="current-password" minlength="12" required></label><button class="primary-button" type="submit">Sign in</button></form>
     </section>
     <section id="admin-workspace" hidden>
-      <div class="overview-grid"><article><span>PROPERTY LISTINGS</span><strong id="listing-count">0</strong></article><article><span>TOUR REQUESTS</span><strong id="tour-count">0</strong></article><button class="quiet-button" id="refresh-button" type="button">Refresh data ↻</button></div>
+      <nav class="admin-nav" aria-label="Admin sections"><a href="#inventory">Overview</a><a href="#listing-editor">Add a listing</a><a href="#viewings">Viewings</a><button class="quiet-button" id="refresh-button" type="button">Refresh ↻</button></nav><div class="overview-grid"><article class="overview-total"><span>ALL LISTINGS</span><strong id="listing-count">0</strong><small>Across sale and rent</small></article><article class="overview-live"><span>VIEWING REQUESTS</span><strong id="tour-count">0</strong><small id="pending-tour-count">0 awaiting your reply</small></article><article class="overview-guide"><span>YOUR NEXT STEP</span><strong>Keep your inventory fresh</strong><small>Update availability as homes change.</small></article></div>
       <div class="workspace-grid">
-        <section class="panel listing-editor-panel">
+        <section class="panel listing-editor-panel" id="listing-editor">
           <div class="panel-heading"><div><p class="eyebrow">PROPERTY INVENTORY</p><h2 id="editor-heading">Add a listing</h2></div><span class="panel-icon">⌂</span></div>
           <form id="home-form">
             <input name="home_id" type="hidden">
@@ -41,14 +41,14 @@
             <div class="form-actions"><button class="primary-button" type="submit" id="save-home-button">Publish listing</button><button class="quiet-button" type="button" id="cancel-edit-button" hidden>Cancel edit</button></div>
           </form>
         </section>
-        <section class="panel">
-          <div class="panel-heading"><div><p class="eyebrow">SHELTER INVENTORY</p><h2>Manage listings</h2></div></div>
+        <section class="panel" id="inventory">
+          <div class="panel-heading"><div><p class="eyebrow">MOSHELTER INVENTORY</p><h2>Manage listings</h2></div></div>
           <div class="admin-list" id="admin-homes"><p class="empty-message">Loading listings…</p></div>
         </section>
       </div>
-      <section class="panel tours-panel"><div class="panel-heading"><div><p class="eyebrow">VIEWING SCHEDULE</p><h2>Tour requests</h2><p>Contact the visitor to confirm the requested time.</p></div></div><div class="admin-list tour-list" id="admin-tours"><p class="empty-message">Loading tour requests…</p></div></section>
+      <section class="panel tours-panel" id="viewings"><div class="panel-heading"><div><p class="eyebrow">VIEWING SCHEDULE</p><h2>Tour requests</h2><p>Contact the visitor to confirm the requested time.</p></div></div><div class="admin-list tour-list" id="admin-tours"><p class="empty-message">Loading tour requests…</p></div></section>
     </section>
   </main>
-  <footer class="admin-footer"><a href="/">← Return to Shelter</a><span>Historical price data and current Shelter listings are kept separate.</span></footer>
+  <footer class="admin-footer"><a href="/">← View public site</a><span>Historical price data and current Moshelter listings are kept separate.</span></footer>
 </body>
 </html>

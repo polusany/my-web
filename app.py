@@ -334,7 +334,7 @@ class Handler(BaseHTTPRequestHandler):
 
     def require_admin(self):
         if not self.admin_authenticated():
-            self.send_json({"error": "Sign in as a Shelter administrator to continue."}, 401)
+            self.send_json({"error": "Sign in as a Moshelter administrator to continue."}, 401)
             return False
         return True
 
@@ -383,7 +383,7 @@ class Handler(BaseHTTPRequestHandler):
                 return self.send_json({"error": "This home is not currently available."}, 404)
             return self.send_json(home)
         if path == "/api/admin/status":
-            return self.send_json({"configured": bool(os.environ.get("SHELTER_ADMIN_PASSWORD")),
+            return self.send_json({"configured": bool(os.environ.get("MOSHELTER_ADMIN_PASSWORD") or os.environ.get("SHELTER_ADMIN_PASSWORD")),
                                    "authenticated": self.admin_authenticated()})
         if path == "/api/admin/homes":
             if not self.require_admin():
@@ -429,9 +429,9 @@ class Handler(BaseHTTPRequestHandler):
         if not self.same_origin():
             return self.send_json({"error": "This request origin is not allowed."}, 403)
         if path == "/api/admin/login":
-            configured_password = os.environ.get("SHELTER_ADMIN_PASSWORD", "")
+            configured_password = os.environ.get("MOSHELTER_ADMIN_PASSWORD") or os.environ.get("SHELTER_ADMIN_PASSWORD", "")
             if len(configured_password) < 12:
-                return self.send_json({"error": "Admin access is not configured. Set SHELTER_ADMIN_PASSWORD to a private password of at least 12 characters and restart Shelter."}, 503)
+                return self.send_json({"error": "Admin access is not configured. Set MOSHELTER_ADMIN_PASSWORD to a private password of at least 12 characters and restart Moshelter."}, 503)
             try:
                 payload = self.read_json()
             except (ValueError, json.JSONDecodeError) as error:
@@ -441,7 +441,7 @@ class Handler(BaseHTTPRequestHandler):
                 return self.send_json({"error": "The password is not correct."}, 401)
             session = secrets.token_urlsafe(32)
             ADMIN_SESSIONS[session] = time.time() + ADMIN_SESSION_TTL
-            secure = "; Secure" if os.environ.get("SHELTER_COOKIE_SECURE") == "1" else ""
+            secure = "; Secure" if (os.environ.get("MOSHELTER_COOKIE_SECURE") or os.environ.get("SHELTER_COOKIE_SECURE")) == "1" else ""
             cookie = f"shelter_admin={session}; Path=/; HttpOnly; SameSite=Strict; Max-Age={ADMIN_SESSION_TTL}{secure}"
             return self.send_json({"ok": True}, headers=(("Set-Cookie", cookie),))
         if path == "/api/admin/logout":
@@ -466,7 +466,7 @@ class Handler(BaseHTTPRequestHandler):
                           payload["preferred_at"], payload["tour_type"], payload["note"],
                           datetime.datetime.now().isoformat(timespec="seconds")))
                 return self.send_json({"ok": True, "request_id": cursor.lastrowid,
-                                       "message": "Your tour request has been sent. Shelter will contact you to confirm the time."}, 201)
+                                       "message": "Your tour request has been sent. Moshelter will contact you to confirm the time."}, 201)
             except (ValueError, json.JSONDecodeError) as error:
                 return self.send_json({"error": str(error)}, 400)
             except sqlite3.Error:
@@ -547,7 +547,7 @@ def main():
     host = os.environ.get("HOST", "127.0.0.1")
     port = int(os.environ.get("PORT", "8000"))
     server = ThreadingHTTPServer((host, port), Handler)
-    print("Shelter is running at http://%s:%s" % (host, port))
+    print("Moshelter is running at http://%s:%s" % (host, port))
     print("Loaded %s cleaned Lagos and Abuja listings." % f"{len(LISTINGS):,}")
     try:
         server.serve_forever()

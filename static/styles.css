@@ -17,3 +17,12 @@
 .listing-filter{max-width:1120px;margin:-17px auto 22px;display:flex;flex-wrap:wrap;justify-content:flex-end;align-items:center;gap:9px;color:#64766a;font-size:11px}.listing-filter select{min-height:37px;padding:7px 12px;border:1px solid #d3ddd2;border-radius:5px;background:#fffefa;color:#284a37;font:600 11px var(--sans)}
 @media(max-width:700px){.listing-filter{margin:-14px 0 18px;justify-content:flex-start}.listing-filter select{max-width:100%}}
 #rent-frequency-field[hidden]{display:none}
+
+/* Moshelter brand finishing */
+.site-header{position:sticky;top:0;z-index:10;backdrop-filter:blur(14px)}
+.brand-mark{background:#214b38;box-shadow:0 3px 8px rgba(23,53,45,.15)}
+.hero{background:radial-gradient(ellipse at 85% 12%,rgba(110,139,107,.22),transparent 34%),var(--ink-deep)}
+.hero h1{max-width:580px}
+.hero .button-light{box-shadow:0 8px 24px rgba(0,0,0,.12)}
+.footer-note{display:flex;align-items:center;gap:18px}
+@media(max-width:700px){.site-header{position:relative}.footer-note{align-items:flex-start;flex-direction:column;gap:7px}}

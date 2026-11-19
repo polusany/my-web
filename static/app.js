@@ -55,7 +55,7 @@ stateSelect.addEventListener('change', () => {
     errorBox.hidden = true;
   } else if (state && metadata) {
     const count = metadata.stateCounts[state] || 0;
-    errorBox.textContent = `Shelter has ${count} usable listings for ${state}; it needs at least ${metadata.minimumStateListings} to estimate a price responsibly. You can browse properties in every location represented in this dataset while more price data is collected.`;
+    errorBox.textContent = `Moshelter has ${count} usable listings for ${state}; it needs at least ${metadata.minimumStateListings} to estimate a price responsibly. You can browse properties in every location represented in this dataset while more price data is collected.`;
     errorBox.hidden = false;
   } else {
     errorBox.hidden = true;
@@ -179,7 +179,7 @@ function renderHomes(homes) {
     const empty = makeElement('div', 'homes-empty');
     empty.append(makeElement('span', 'homes-empty-icon', '⌂'));
     empty.append(makeElement('h3', '', 'No listings match this filter yet.'));
-    empty.append(makeElement('p', '', 'Try another filter, or check back when Shelter adds more available homes, rooms, studios and shops.'));
+    empty.append(makeElement('p', '', 'Try another filter, or check back when Moshelter adds more available homes, rooms, studios and shops.'));
     homesGrid.append(empty);
     return;
   }

@@ -55,6 +55,8 @@ async function loadAdminData() {
     const [homes, tours] = await Promise.all([api('/api/admin/homes'), api('/api/admin/tours')]);
     document.getElementById('listing-count').textContent = homes.homes.length.toLocaleString('en-NG');
     document.getElementById('tour-count').textContent = tours.tours.length.toLocaleString('en-NG');
+    const pending = tours.tours.filter((tour) => tour.status === 'requested').length;
+    document.getElementById('pending-tour-count').textContent = `${pending.toLocaleString('en-NG')} awaiting your reply`;
     renderHomes(homes.homes);
     renderTours(tours.tours);
   } catch (error) {

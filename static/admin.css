@@ -2,3 +2,23 @@
 .notice.is-error,.form-message.is-error{border-color:#e8cec8;background:#fbefec;color:#913c33}.form-message.is-error{padding:8px 10px;border:1px solid #e8cec8;border-radius:4px}
 #rent-frequency-field[hidden]{display:none}
 .form-hint{margin:-7px 0 0;color:#718076;font-size:9px}
+
+/* Moshelter workspace navigation and dashboard */
+.admin-nav{position:sticky;top:0;z-index:5;display:flex;align-items:center;gap:7px;margin:0 0 19px;padding:9px 11px;border:1px solid #e2e8df;border-radius:7px;background:rgba(255,254,250,.94);backdrop-filter:blur(12px)}
+.admin-nav a{padding:8px 12px;border-radius:4px;color:#566d5e;text-decoration:none;font-size:10px;font-weight:600}
+.admin-nav a:hover{background:#edf2ea;color:#203e30}
+.admin-nav .quiet-button{margin-left:auto}
+.overview-grid{grid-template-columns:.85fr .85fr 1.3fr;gap:14px;margin-bottom:20px}
+.overview-grid article{min-height:112px;padding:17px 19px;border-radius:7px}
+.overview-grid article strong{font:600 29px/1.2 var(--serif);letter-spacing:-.3px}
+.overview-grid article small{display:block;margin-top:5px;color:#7b8b80;font-size:9px}
+.overview-guide{background:#eaf0e7!important;border-color:#d7e2d5!important}
+.overview-guide strong{font:600 17px/1.4 var(--sans)!important;color:#2e513b}
+.page-intro{padding:18px 0 20px;border-bottom:1px solid #e0e7de}
+.page-intro h1{font-size:42px;letter-spacing:-.7px}
+.workspace-grid{gap:19px}
+.panel{box-shadow:0 12px 34px rgba(25,55,42,.055)}
+.listing-editor-panel{scroll-margin-top:76px}
+#inventory,#viewings{scroll-margin-top:76px}
+@media(max-width:820px){.overview-grid{grid-template-columns:1fr 1fr}.overview-guide{grid-column:1/-1}}
+@media(max-width:560px){.admin-nav{gap:2px;overflow-x:auto}.admin-nav a{padding:8px 7px;white-space:nowrap;font-size:9px}.admin-nav .quiet-button{flex:none;padding:0 9px}.overview-grid{grid-template-columns:1fr 1fr}.overview-guide{grid-column:1/-1}.page-intro h1{font-size:34px}}

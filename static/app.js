@@ -1,3 +1,30 @@
+const menuToggle = document.querySelector('.menu-toggle');
+const mainNavigation = document.getElementById('main-navigation');
+
+if (menuToggle && mainNavigation) {
+  const closeMenu = () => {
+    menuToggle.setAttribute('aria-expanded', 'false');
+    menuToggle.setAttribute('aria-label', 'Open navigation menu');
+    mainNavigation.classList.remove('is-open');
+  };
+
+  menuToggle.addEventListener('click', () => {
+    const isOpen = menuToggle.getAttribute('aria-expanded') === 'true';
+    menuToggle.setAttribute('aria-expanded', String(!isOpen));
+    menuToggle.setAttribute('aria-label', isOpen ? 'Open navigation menu' : 'Close navigation menu');
+    mainNavigation.classList.toggle('is-open', !isOpen);
+  });
+
+  mainNavigation.querySelectorAll('a').forEach((link) => link.addEventListener('click', closeMenu));
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') closeMenu();
+  });
+  window.addEventListener('resize', () => {
+    if (window.innerWidth > 700) closeMenu();
+  });
+}
+
+
 const stateSelect = document.getElementById('state');
 const townSelect = document.getElementById('town');
 const typeSelect = document.getElementById('title');

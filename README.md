@@ -16,7 +16,13 @@ Moshelter uses Python's built-in libraries. No package installation is needed. S
 
 Administrators can publish sale or rental listings, including rooms, self-contained units, flats, studios, and shops in the 24 covered states and Abuja. Rent can be priced monthly or yearly. Visitors can filter listings by sale or rent and location, then request an in-person or virtual viewing. Tour requests require admin confirmation and are saved in the local shelter_inventory.sqlite3 database.
 
-For a public HTTPS deployment, set `MOSHELTER_COOKIE_SECURE=1` and use a production-ready server behind HTTPS. The built-in development server is intended for learning and local use.
+## Deploy to Render
+
+The included `render.yaml` configures a small Python web service in Frankfurt with HTTPS, the required environment variables, a health check, and a 1 GB persistent disk for the SQLite inventory. Connect this repository to Render and create a Blueprint from `render.yaml`. Render prompts for `MOSHELTER_ADMIN_PASSWORD`; enter a private password of at least 12 characters in the dashboard and never commit it to Git.
+
+This service needs a paid Render instance because the free web tier cannot use persistent disks. The current Blueprint uses Render's `0.5c-512mb` plan and a 1 GB disk. Listing and tour data are written under `/var/data` and survive deploys and restarts. The `shelter_inventory.sqlite3` file in the project root is excluded from Git; this deployment starts with an empty inventory.
+
+Render terminates public HTTPS and forwards requests to the Python server over its private service connection. The service is configured for a single instance and small traffic volumes. If you attach a custom domain, set its DNS records in Render and verify HTTPS before sharing the site.
 
 ## Main files
 

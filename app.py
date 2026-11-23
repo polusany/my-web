@@ -20,7 +20,9 @@ from urllib.parse import urlparse
 ROOT = Path(__file__).resolve().parent
 DATA_PATH = ROOT / "data" / "nigeria_houses_data.csv"
 WEB_ROOT = ROOT / "static"
-INVENTORY_DB_PATH = ROOT / "shelter_inventory.sqlite3"
+DATA_DIR = Path(os.environ.get("MOSHELTER_DATA_DIR", str(ROOT))).expanduser()
+DATA_DIR.mkdir(parents=True, exist_ok=True)
+INVENTORY_DB_PATH = DATA_DIR / "shelter_inventory.sqlite3"
 MIN_STATE_LISTINGS = 50
 NUMERIC_FIELDS = ("bedrooms", "bathrooms", "toilets", "parking_space")
 NIGERIAN_STATES = {

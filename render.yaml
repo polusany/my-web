@@ -1,0 +1,22 @@
+services:
+  - type: web
+    name: moshelter
+    runtime: python
+    plan: 0.5c-512mb
+    region: frankfurt
+    buildCommand: python -m py_compile app.py
+    startCommand: python app.py
+    healthCheckPath: /api/health
+    disk:
+      name: moshelter-data
+      mountPath: /var/data
+      sizeGB: 1
+    envVars:
+      - key: HOST
+        value: 0.0.0.0
+      - key: MOSHELTER_DATA_DIR
+        value: /var/data
+      - key: MOSHELTER_COOKIE_SECURE
+        value: "1"
+      - key: MOSHELTER_ADMIN_PASSWORD
+        sync: false
